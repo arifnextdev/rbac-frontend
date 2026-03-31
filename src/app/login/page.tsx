@@ -149,24 +149,66 @@ export default function LoginPage() {
 						</Button>
 					</form>
 
-					<div className="bg-muted/50 rounded-lg p-4 space-y-2">
-						<p className="text-xs font-medium text-muted-foreground">
-							Demo Accounts:
-						</p>
-						<div className="grid grid-cols-2 gap-2 text-xs">
-							<div>
-								<span className="font-medium">Admin:</span> admin@example.com
-							</div>
-							<div>
-								<span className="font-medium">Pass:</span> Admin@123
-							</div>
-							<div>
-								<span className="font-medium">Manager:</span>{" "}
-								manager@example.com
-							</div>
-							<div>
-								<span className="font-medium">Pass:</span> Manager@123
-							</div>
+					<div className="bg-muted/50 rounded-xl p-6 space-y-4 border border-border/50">
+						<div className="flex items-center justify-between">
+							<p className="text-sm font-semibold text-foreground">
+								Quick Login (Demo Accounts)
+							</p>
+							<span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+								Click to fill
+							</span>
+						</div>
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+							{[
+								{
+									role: "Admin",
+									email: "admin@example.com",
+									pass: "Admin@123",
+									color: "text-red-500 bg-red-500/10",
+								},
+								{
+									role: "Manager",
+									email: "manager@example.com",
+									pass: "Manager@123",
+									color: "text-blue-500 bg-blue-500/10",
+								},
+								{
+									role: "Agent",
+									email: "agent@example.com",
+									pass: "Agent@123",
+									color: "text-green-500 bg-green-500/10",
+								},
+								{
+									role: "Customer",
+									email: "customer@example.com",
+									pass: "Customer@123",
+									color: "text-orange-500 bg-orange-500/10",
+								},
+							].map((user) => (
+								<button
+									key={user.role}
+									type="button"
+									onClick={() => {
+										setEmail(user.email);
+										setPassword(user.pass);
+									}}
+									className="flex flex-col items-start p-3 rounded-lg border border-border bg-card hover:bg-accent hover:border-primary/50 transition-all text-left group"
+								>
+									<div className="flex items-center gap-2 mb-1">
+										<span
+											className={`text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded ${user.color}`}
+										>
+											{user.role}
+										</span>
+									</div>
+									<p className="text-xs text-muted-foreground truncate w-full group-hover:text-foreground">
+										{user.email}
+									</p>
+									<p className="text-[10px] text-muted-foreground/60">
+										PW: {user.pass}
+									</p>
+								</button>
+							))}
 						</div>
 					</div>
 				</div>
